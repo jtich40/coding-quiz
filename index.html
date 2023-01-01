@@ -1,7 +1,49 @@
 <!-- Need a start button to begin quiz -->
 <!-- Once clicked, first question appears and timer starts -->
-<!-- List of choices available to answer question -->
+<!-- List of choices available to answer question, addEventListener to each choice -->
 <!-- After picking an answer, the next question should appear -->
 <!-- Wrong answers subtract time from the timer -->
 <!-- If all questions are answered or time runs out, the quiz ends -->
 <!-- Once the game is over, use local storage to save initials and score  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Coding Quiz</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <!-- Starting Page -->
+    <div><a href="./leaderboards.html">Leaderboards</a></div>
+
+    <div>Time: 0</div>
+
+    <div>
+        <h1>Javascript Coding Quiz</h1>
+        <p>
+            The following quiz is timed and will include a series of multiple choice questions related to JavaScript. 
+            Please note that 15 seconds will be deducted from the timer for each incorrect answer.
+            Try to answer the questions as quickly as possible to set a new high score!
+        </p>
+        <button>Start Quiz</button>
+    </div>
+<!-- Questions -->
+    <div>
+        <h2></h2>
+        <div></div>
+    </div>
+    <!-- End of Quiz -->
+    <div>
+        <h2>You did it!</h2>
+        <p>Your total score is <span></span>.</p>
+        <p>Please enter your initials here: <input type="text" max="3"/>
+            <button>Submit</button>
+        </p>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

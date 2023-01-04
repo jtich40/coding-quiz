@@ -17,16 +17,16 @@
 </head>
 <body>
     <!-- Starting Page -->
-    <div><a href="./leaderboards.html">Leaderboards</a></div>
+    <div id="leaderboards"><a href="./leaderboards.html">Leaderboards</a></div>
 
-    <div>Time: 0</div>
+    <div id="timer">Time: 0</div>
 
-    <div>
+    <div class="box">
         <h1>Javascript Coding Quiz</h1>
         <p>
-            The following quiz is timed and will include a series of multiple choice questions related to JavaScript. 
-            Please note that 15 seconds will be deducted from the timer for each incorrect answer.
-            Try to answer the questions as quickly as possible to set a new high score!
+            You will have 50 seconds to answer a series of JavaScript-related questions. 
+            For each wrong answer, you will lose 10 seconds. Try to answer the questions
+            as quickly as possible to set a new high score!
         </p>
         <button>Start Quiz</button>
     </div>
@@ -36,7 +36,7 @@
         <div></div>
     </div>
     <!-- End of Quiz -->
-    <div>
+    <div class="hide">
         <h2>You did it!</h2>
         <p>Your total score is <span></span>.</p>
         <p>Please enter your initials here: <input type="text" max="3"/>

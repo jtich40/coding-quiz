@@ -56,10 +56,10 @@ function pullQuestion() {
     
     // grab current question object from array
     let currentQuestion = quizQuestions[currentQuestionIndex];
-    
     if (currentQuestionIndex === quizQuestions.length) {
         endQuiz()
-}
+    }
+    
 
     // fill in current question
     let questionTextEl = document.getElementById('question-text');
@@ -76,9 +76,16 @@ function pullQuestion() {
         optionNode.setAttribute("class", "option");
         optionNode.setAttribute("value", option);
         optionNode.textContent = option
+
+        optionNode.addEventListener('click', () => {
+            const userAnswer = this.event.target.value;
+            // console.log(userAnswer);
+            checkAnswer(userAnswer);
+        })
         // make created options appear on page
         optionsEl.appendChild(optionNode);
         // console.log(quizQuestions[currentQuestionIndex].options[i]);
+        
     }
 
     // do nothing if user clicks on elements other than listed buttons
@@ -101,16 +108,20 @@ function checkAnswer(answer) {
 
         // displays when correct answer is chosen
         responseEl.textContent = "Correct!"
+
         // sets style for correct answer
         responseEl.setAttribute('class', 'response-right')
+
         // hides response after it appears for one second
         setTimeout(function () {
             responseEl.setAttribute('class', 'response-right hide')
         }, 1000)
+
     } else {
         // progresses quiz to next question
         currentQuestionIndex++;
         pullQuestion()
+        
         // deducts 10 seconds from clock as penalty for wrong answer
         time -= 10;
 
@@ -122,12 +133,15 @@ function checkAnswer(answer) {
 
         // displays when incorrect answer is chosen
         responseEl.textContent = "Incorrect!";
+        
         // sets style for correct answer
         responseEl.setAttribute('class', 'response-wrong');
+
         // hides response after it appears for one second
     setTimeout(function () {
         responseEl.setAttribute('class', 'response-wrong hide');
     }, 1000)
+
     }
 
     // show correct or incorrect for one second
@@ -135,7 +149,7 @@ function checkAnswer(answer) {
     // setTimeout(function () {
     //     responseEl.setAttribute('class', 'response hide')
     // }, 1000)
-
+    
 }
 
 function endQuiz() {
@@ -162,13 +176,13 @@ function endQuiz() {
 startBtn.addEventListener("click", startQuiz);
 
 // progress quiz when user selects an option
-optionsEl.addEventListener('click', () => {
-    const userAnswer = this.event.target.value;
-    // console.log(userAnswer);
-    checkAnswer(userAnswer);
-    if (!userAnswer.matches('.option')) {
-        return;
-    }
-})
+// optionsEl.addEventListener('click', () => {
+//     const userAnswer = this.event.target.value;
+//     // console.log(userAnswer);
+//     checkAnswer(userAnswer);
+//     // if (!userAnswer.matches('.option')) {
+//     //     return;
+//     // }
+// })
 
 // optionsEl.addEventListener('click', checkAnswer)

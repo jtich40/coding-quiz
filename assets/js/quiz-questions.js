@@ -29,10 +29,11 @@ let quizQuestions = [
         answer: 'object',
     }
 ];
-console.log(quizQuestions)
-let optionsNode = document.createElement('button')
-optionsNode.setAttribute('class','button')
-optionsNode.setAttribute('value', options)
 
-optionBtn.textContent = 1 + 1 + '.' + option
-optionsId.appendChild(optionsNode)
+// console.log(quizQuestions)
+// let optionsNode = document.createElement('button')
+// optionsNode.setAttribute('class','button')
+// optionsNode.setAttribute('value', options)
+
+// optionBtn.textContent = 1 + 1 + '.' + option
+// optionsId.appendChild(optionsNode)

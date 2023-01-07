@@ -46,7 +46,44 @@ button {
     display: none;
   }
 
-  .option button {
-    display: block;
+  #question-text {
+    text-align: center;
+  }
+
+  #options {
+    text-align: center;
   }
   
+  .response-right {
+    font-weight: bold;
+    font-size: 180%;
+    text-decoration: underline;
+    text-align: center;
+    margin: 4px 0;
+    padding: 15px 0;
+    color: #1aaa0d;
+  }
+
+  .response-wrong {
+    font-weight: bold;
+    font-size: 180%;
+    text-decoration: underline;
+    text-align: center;
+    margin: 4px 0;
+    padding: 15px 0;
+    color: #f82121;
+  }
+
+  #end-page {
+    text-align: center;
+  }
+
+  #score {
+    color: #1aaa0d;
+    font-weight: bold;
+    font-size: 130%;
+  }
+
+  #initials {
+    font-size: 115%;
+  }

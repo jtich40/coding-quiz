@@ -18,7 +18,18 @@ let optionsEl = document.getElementById('options');
 let responseEl = document.getElementById('response');
 let submitBtn = document.getElementById('submit');
 let initialsEl = document.getElementById('initials');
+let leaderboards = []
 
+// Event listeners based on different user inputs
+
+// start quiz when start button is clicked
+startBtn.addEventListener("click", startQuiz);
+
+// submit final score to leaderboards after clicking submit button
+submitBtn.addEventListener('click', saveScore)
+
+// also add scores to leaderboards if enter is pressed on keyboard
+initialsEl.onkeyup = pressEnter;
 
 // initiate beginning of quiz
 function startQuiz () {
@@ -36,6 +47,7 @@ function startQuiz () {
     // start the clock countdown
     // time = setInterval(timerCountdown, 1000);
     
+    // grab question and options
     pullQuestion();
     
 }
@@ -55,10 +67,11 @@ function timerCountdown() {
 function pullQuestion() {
     
     // grab current question object from array
-    let currentQuestion = quizQuestions[currentQuestionIndex];
     if (currentQuestionIndex === quizQuestions.length) {
         endQuiz()
+        return
     }
+    let currentQuestion = quizQuestions[currentQuestionIndex];
     
 
     // fill in current question
@@ -98,7 +111,7 @@ function checkAnswer(answer) {
 //     if (!buttonEl.matches('.option')) {
 //         return;
 //     }
-
+    // checks if answer is correct/incorrect
     if (answer === quizQuestions[currentQuestionIndex].answer) {
         // console.log(quizQuestions[currentQuestionIndex].answer);
         
@@ -118,12 +131,14 @@ function checkAnswer(answer) {
         }, 1000)
 
     } else {
+        
+        // deducts 10 seconds from clock as penalty for wrong answer
+        time -= 10;
+
         // progresses quiz to next question
         currentQuestionIndex++;
         pullQuestion()
         
-        // deducts 10 seconds from clock as penalty for wrong answer
-        time -= 10;
 
         // stops quiz if time is less than 0
         // if (time < 0) {
@@ -170,10 +185,43 @@ function endQuiz() {
     scoreEl.textContent = time;
 }
 
-// startQuiz ();
+function findScores () {
+    // Grabs all previous scores from local storage
+    let allLeaderboards = JSON.parse(localStorage.getItem('leaderboards'))
 
-// start quiz when start button is clicked
-startBtn.addEventListener("click", startQuiz);
+    if (allLeaderboards !== null) {
+        // fill leaderboards array with scores if found in local storage
+        leaderboards = allLeaderboards;
+    }
+}
+
+function saveScore () {
+    if(initials === '') {
+        return
+    } else {
+        // add local storage scores
+        findScores();
+        // grab input from text box
+        let userScore = {
+        score: time,
+        initials: initialsEl.value.trim()
+       };
+       // add latest score to leaderboards array that includes previous scores
+       leaderboards.push(userScore);
+       // save to local storage
+       localStorage.setItem('leaderboards', JSON.stringify(leaderboards))
+       // redirect to leaderboards page
+       location.href = 'leaderboards.html';
+    }
+}
+
+function pressEnter(event) {
+    // initials will be submitted if user presses enter on keyboard
+    if (event.key === 'Enter') {
+        saveScore();
+    }
+}
+
 
 // progress quiz when user selects an option
 // optionsEl.addEventListener('click', () => {

@@ -23,7 +23,10 @@ function showLeaderboards () {
     }
 }
 
-showLeaderboards();
+// makes sure the function isn't executed if scores are cleared
+if(localStorage.getItem('leaderboards')) {
+    showLeaderboards();
+}
 
 function clearLeaderboards () {
     // remove scores from local storage

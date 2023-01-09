@@ -1,97 +1,113 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  background-color: #000;
+}
+
+h1,
+h2 {
+  font-size: 180%;
+}
+
+p {
+  font-size: 130%;
 }
 
 #leaderboards a {
-    text-decoration: none;
-    color: #1aaa0d;
-    font-size: 120%;
+  text-decoration: none;
+  color: #1aaa0d;
+  font-size: 180%;
 }
 
 #leaderboards a:hover {
-    color: #f82121;
+  color: #f82121;
 }
 
 #timer {
-    position: absolute;
-    color: #1aaa0d;
-    top: 14px;
-    right: 14px;
-
-
+  position: absolute;
+  color: #1aaa0d;
+  top: 14px;
+  right: 14px;
+  font-size: 180%;
 }
 
 button {
-    display: inline-block;
-    cursor: pointer;
-    margin: 5px;
-    border-radius: 7px;
-    font-size: 115%;
-    background-color: #1aaa0d;
-    padding: 2px 10px;
-    color: #ffffff;
-    
-  }
-  
-  button:hover {
-    background-color: #f82121;
-  }
-  
-  .box {
-    margin: 173px auto 0 auto;
-    max-width: 500px;
-  }
-  
-  .hide {
-    display: none;
-  }
+  display: inline-block;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 7px;
+  font-size: 145%;
+  background-color: #1aaa0d;
+  padding: 2px 10px;
+  color: #ffffff;
+}
 
-  #question-text {
-    text-align: center;
-  }
+button:hover {
+  background-color: #f82121;
+}
 
-  #options {
-    text-align: center;
-  }
-  
-  .response-right {
-    font-weight: bold;
-    font-size: 180%;
-    text-decoration: underline;
-    text-align: center;
-    margin: 4px 0;
-    padding: 15px 0;
-    color: #1aaa0d;
-  }
+.box {
+  margin: 50px auto 0 auto;
+  max-width: 500px;
+}
 
-  .response-wrong {
-    font-weight: bold;
-    font-size: 180%;
-    text-decoration: underline;
-    text-align: center;
-    margin: 4px 0;
-    padding: 15px 0;
-    color: #f82121;
-  }
+.hide {
+  display: none;
+}
 
-  #end-page {
-    text-align: center;
-  }
+#options button {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
 
-  #score {
-    color: #1aaa0d;
-    font-weight: bold;
-    font-size: 130%;
-  }
+.response-right {
+  font-weight: bold;
+  font-size: 180%;
+  text-decoration: underline;
+  text-align: center;
+  margin: 4px 0;
+  padding: 15px 0;
+  color: #1aaa0d;
+}
 
-  #initials {
-    font-size: 115%;
-  }
+.response-wrong {
+  font-weight: bold;
+  font-size: 180%;
+  text-decoration: underline;
+  text-align: center;
+  margin: 4px 0;
+  padding: 15px 0;
+  color: #f82121;
+}
 
-  ol {
+#score {
+  color: #1aaa0d;
+  font-weight: bold;
+  font-size: 130%;
+}
 
-  }
+#initials {
+  font-size: 115%;
+}
 
-  li {
-    
-  }
+ol {
+  border-radius: 8px;
+}
+
+li {
+  font-weight: bold;
+  font-size: 150%;
+  border-radius: 20px;
+  padding: 5px;
+
+}
+
+li:nth-child(even) {
+  background-color: #f06565;
+}
+
+li:nth-child(odd) {
+  background-color: #59e44c;
+}
+

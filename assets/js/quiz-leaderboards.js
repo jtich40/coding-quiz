@@ -15,11 +15,9 @@ function showLeaderboards () {
         const postedScores = leaderboards[i].initials + ' : ' + leaderboards[i].score;
         const liScore = document.createElement('li')
         liScore.textContent = postedScores
-        console.log(leaderboards[i])
         // render list items to leaderboards page
         let olEl = document.getElementById('leaderboards')
         olEl.appendChild(liScore);
-        
     }
 }
 

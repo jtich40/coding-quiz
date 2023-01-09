@@ -20,16 +20,6 @@ let submitBtn = document.getElementById('submit');
 let initialsEl = document.getElementById('initials');
 let leaderboards = []
 
-// Event listeners based on different user inputs
-
-// start quiz when start button is clicked
-startBtn.addEventListener("click", startQuiz);
-
-// submit final score to leaderboards after clicking submit button
-submitBtn.addEventListener('click', saveScore)
-
-// also add scores to leaderboards if enter is pressed on keyboard
-initialsEl.onkeyup = pressEnter;
 
 // initiate beginning of quiz
 function startQuiz () {
@@ -73,14 +63,14 @@ function pullQuestion() {
     }
     let currentQuestion = quizQuestions[currentQuestionIndex];
     
-
+    
     // fill in current question
     let questionTextEl = document.getElementById('question-text');
     questionTextEl.textContent = currentQuestion.text;
-
+    
     // remove options from previous question
     optionsEl.innerHTML = '';
-
+    
     // loop through all available options
     for (let i = 0; i < currentQuestion.options.length; i++) {
         // make new button appear for each option
@@ -89,7 +79,7 @@ function pullQuestion() {
         optionNode.setAttribute("class", "option");
         optionNode.setAttribute("value", option);
         optionNode.textContent = option
-
+        
         optionNode.addEventListener('click', () => {
             const userAnswer = this.event.target.value;
             // console.log(userAnswer);
@@ -100,31 +90,31 @@ function pullQuestion() {
         // console.log(quizQuestions[currentQuestionIndex].options[i]);
         
     }
-
+    
     // do nothing if user clicks on elements other than listed buttons
 }
 
 function checkAnswer(answer) {
     console.log(answer);
-
-//    let buttonEl = event.target
-//     if (!buttonEl.matches('.option')) {
-//         return;
-//     }
+    
+    //    let buttonEl = event.target
+    //     if (!buttonEl.matches('.option')) {
+        //         return;
+        //     }
     // checks if answer is correct/incorrect
     if (answer === quizQuestions[currentQuestionIndex].answer) {
         // console.log(quizQuestions[currentQuestionIndex].answer);
-        
+            
         // progresses quiz to next question
         currentQuestionIndex++
         pullQuestion()
-
+        
         // displays when correct answer is chosen
         responseEl.textContent = "Correct!"
-
+        
         // sets style for correct answer
         responseEl.setAttribute('class', 'response-right')
-
+        
         // hides response after it appears for one second
         setTimeout(function () {
             responseEl.setAttribute('class', 'response-right hide')
@@ -134,61 +124,61 @@ function checkAnswer(answer) {
         
         // deducts 10 seconds from clock as penalty for wrong answer
         time -= 10;
-
+        
         // progresses quiz to next question
         currentQuestionIndex++;
         pullQuestion()
         
-
+        
         // stops quiz if time is less than 0
         // if (time < 0) {
         //     time == 0;
         //     endQuiz();
         // }
-
+        
         // displays when incorrect answer is chosen
         responseEl.textContent = "Incorrect!";
         
         // sets style for correct answer
         responseEl.setAttribute('class', 'response-wrong');
-
+        
         // hides response after it appears for one second
-    setTimeout(function () {
-        responseEl.setAttribute('class', 'response-wrong hide');
-    }, 1000)
+        setTimeout(function () {
+            responseEl.setAttribute('class', 'response-wrong hide');
+        }, 1000)
 
     }
-
+    
     // show correct or incorrect for one second
     // responseEl.setAttribute('class', 'response')
     // setTimeout(function () {
-    //     responseEl.setAttribute('class', 'response hide')
-    // }, 1000)
+        //     responseEl.setAttribute('class', 'response hide')
+        // }, 1000)
+        
+    }
     
-}
-
-function endQuiz() {
-    // stop clock
-    clearInterval(timer);
-   // update clock to 0 if ending time is negative
-    if (time < 0) {
+    function endQuiz() {
+        // stop clock
+        clearInterval(timer);
+        // update clock to 0 if ending time is negative
+        if (time < 0) {
         time = 0;
     }
     clockEl.textContent = time;
     // show end page to submit score
    let endPageEl = document.getElementById('end-page');
    endPageEl.removeAttribute('class');
-    // hide questions page
+   // hide questions page
    questionEl.setAttribute('class', 'hide');
-    // add score to end page
-    let scoreEl = document.getElementById('score');
-    scoreEl.textContent = time;
+   // add score to end page
+   let scoreEl = document.getElementById('score');
+   scoreEl.textContent = time;
 }
 
 function findScores () {
     // Grabs all previous scores from local storage
     let allLeaderboards = JSON.parse(localStorage.getItem('leaderboards'))
-
+    
     if (allLeaderboards !== null) {
         // fill leaderboards array with scores if found in local storage
         leaderboards = allLeaderboards;
@@ -203,15 +193,15 @@ function saveScore () {
         findScores();
         // grab input from text box
         let userScore = {
-        score: time,
-        initials: initialsEl.value.trim()
-       };
-       // add latest score to leaderboards array that includes previous scores
-       leaderboards.push(userScore);
-       // save to local storage
-       localStorage.setItem('leaderboards', JSON.stringify(leaderboards))
-       // redirect to leaderboards page
-       location.href = 'leaderboards.html';
+            score: time,
+            initials: initialsEl.value.toUpperCase().trim()
+        };
+        // add latest score to leaderboards array that includes previous scores
+        leaderboards.push(userScore);
+        // save to local storage
+        localStorage.setItem('leaderboards', JSON.stringify(leaderboards))
+        // redirect to leaderboards page
+        location.href = 'leaderboards.html';
     }
 }
 
@@ -223,14 +213,23 @@ function pressEnter(event) {
 }
 
 
+// start quiz when start button is clicked
+startBtn.addEventListener("click", startQuiz);
+
+// submit final score to leaderboards after clicking submit button
+submitBtn.addEventListener('click', saveScore)
+
+// also add scores to leaderboards if enter is pressed on keyboard
+initialsEl.onkeyup = pressEnter;
+
 // progress quiz when user selects an option
 // optionsEl.addEventListener('click', () => {
 //     const userAnswer = this.event.target.value;
 //     // console.log(userAnswer);
 //     checkAnswer(userAnswer);
 //     // if (!userAnswer.matches('.option')) {
-//     //     return;
-//     // }
-// })
-
+    //     //     return;
+    //     // }
+    // })
+    
 // optionsEl.addEventListener('click', checkAnswer)
